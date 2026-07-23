@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Correctly — team consulting for small and mid-sized businesses</title>
+<meta name="description" content="Consulting for leadership teams and partnerships. Most team friction isn't personal — it's structural.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #E9E9E3;
+    --ground-deep: #DEDED6;
+    --ink: #1B211D;
+    --ink-soft: #5C635C;
+    --rule: #C2C2B8;
+    --accent: #2E4A3B;
+    --measure: 34rem;
+    --spine: 5.5rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* The plumb line: true vertical, everything hangs from it. */
+  .spine {
+    position: fixed;
+    top: 0;
+    left: var(--spine);
+    width: 1px;
+    height: 100vh;
+    background: var(--rule);
+    transform-origin: top center;
+    transform: scaleY(0);
+    animation: drop 900ms cubic-bezier(.16,.84,.44,1) 120ms forwards;
+    z-index: 0;
+  }
+
+  @keyframes drop { to { transform: scaleY(1); } }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3.5rem calc(var(--spine) + 2.5rem) 2.75rem;
+    gap: 4rem;
+  }
+
+  .rise { opacity: 0; transform: translateY(0.6rem); animation: rise 700ms cubic-bezier(.16,.84,.44,1) forwards; }
+  .d1 { animation-delay: 420ms; }
+  .d2 { animation-delay: 540ms; }
+  .d3 { animation-delay: 660ms; }
+  .d4 { animation-delay: 780ms; }
+  .d5 { animation-delay: 900ms; }
+
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .btn {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.005em;
+    color: var(--ground);
+    background: var(--accent);
+    text-decoration: none;
+    padding: 0.62rem 1.15rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: background 180ms ease;
+  }
+
+  .btn:hover, .btn:focus-visible { background: var(--ink); }
+
+  .eyebrow {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .wordmark {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .lede {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 5.4vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    margin: 1.75rem 0 0;
+    max-width: 18ch;
+  }
+
+  .lede em {
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+
+  .body-copy {
+    max-width: var(--measure);
+    margin: 2rem 0 0;
+    color: var(--ink-soft);
+    font-size: 1.125rem;
+    line-height: 1.62;
+  }
+
+  .body-copy + .body-copy { margin-top: 1.1rem; }
+  .body-copy strong { font-weight: 400; color: var(--ink); }
+
+  .cta-row {
+    margin-top: 2.75rem;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+  }
+
+  .cta {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--ink);
+    transition: color 180ms ease, border-color 180ms ease, gap 180ms ease;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55rem;
+  }
+
+  .cta:hover, .cta:focus-visible { color: var(--accent); border-bottom-color: var(--accent); gap: 0.9rem; }
+  .cta .arrow { font-family: "Newsreader", serif; transition: transform 180ms ease; }
+  .cta:hover .arrow { transform: translateX(0.1rem); }
+
+  .credential {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  footer a:hover, footer a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer .note { color: var(--ink-soft); opacity: 0.8; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 1px; }
+
+  @media (max-width: 44rem) {
+    :root { --spine: 1.5rem; }
+    .page { padding: 2.5rem 1.75rem 2rem calc(var(--spine) + 1.5rem); gap: 3rem; }
+    .lede { max-width: 14ch; }
+    .body-copy { font-size: 1.0625rem; }
+    .btn { font-size: 0.75rem; padding: 0.55rem 0.9rem; }
+    .wordmark { font-size: 0.75rem; letter-spacing: 0.16em; }
+    footer { flex-direction: column; gap: 0.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spine { animation: none; transform: scaleY(1); }
+    .rise { animation: none; opacity: 1; transform: none; }
+    .cta, .cta .arrow { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="spine" aria-hidden="true"></div>
+
+<div class="page">
+
+  <header class="topbar rise d1">
+    <p class="wordmark">Work Correctly</p>
+    <a class="btn" href="BOOKING_LINK_HERE">Book a conversation</a>
+  </header>
+
+  <main>
+    <p class="eyebrow rise d2">Consulting for leadership teams &amp; partnerships</p>
+
+    <h1 class="lede rise d2">Most team friction isn't personal. It's <em>structural.</em></h1>
+
+    <p class="body-copy rise d3">
+      I work with leadership teams and partnerships at small and mid-sized
+      businesses — surfacing what isn't being said, and giving people a clear
+      way to see how each of them is built to work.
+    </p>
+
+    <p class="body-copy rise d3">
+      <strong>Conflict stops being about character and starts being about design.</strong>
+      That shift is usually the whole fix.
+    </p>
+
+    <div class="cta-row rise d4">
+      <a class="cta" href="BOOKING_LINK_HERE">Book a conversation <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <span class="credential">Ten years facilitating group and executive conversations.</span>
+    </div>
+  </main>
+
+  <footer class="rise d5">
+    <span><a href="mailto:shawn@workcorrectly.com">shawn@workcorrectly.com</a></span>
+    <span>Austin, Texas</span>
+    <span class="note">Full site in progress.</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
