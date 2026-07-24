@@ -7,236 +7,356 @@
 <meta name="description" content="Consulting for leadership teams and partnerships. Most team friction isn't personal — it's structural.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ground: #E9E9E3;
-    --ground-deep: #DEDED6;
-    --ink: #1B211D;
-    --ink-soft: #5C635C;
-    --rule: #C2C2B8;
-    --accent: #2E4A3B;
-    --measure: 34rem;
-    --spine: 5.5rem;
+  :root{
+    --paper:#EDEDE9;
+    --ink:#171A19;
+    --muted:#6E736F;
+    --rule:#D3D5CE;
+    --accent:#24494A;
+    --measure:44rem;
+    --pad:clamp(1.5rem, 5vw, 5rem);
   }
 
-  *, *::before, *::after { box-sizing: border-box; }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:clamp(1rem,0.96rem + 0.2vw,1.0625rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:68rem;margin:0 auto;padding:0 var(--pad)}
+  p{margin:0 0 1.1em}
+  a{color:inherit}
 
-  html, body { height: 100%; }
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:1rem;padding:2rem 0 0;
+  }
+  .wordmark{
+    font-family:"Newsreader",Georgia,serif;
+    font-size:1.375rem;font-weight:400;letter-spacing:0.01em;
+  }
+  .descriptor{
+    font-size:0.75rem;line-height:1.4;color:var(--muted);
+    margin-top:0.2rem;
+  }
+  .nav-cta{
+    font-size:0.8125rem;font-weight:500;letter-spacing:0.01em;
+    color:var(--accent);text-decoration:none;
+    border:1px solid var(--accent);
+    padding:0.5rem 1.1rem;
+    white-space:nowrap;
+    transition:background 160ms ease,color 160ms ease;
+  }
+  .nav-cta:hover{background:var(--accent);color:var(--paper)}
 
-  body {
-    margin: 0;
-    background: var(--ground);
-    color: var(--ink);
-    font-family: "Newsreader", Georgia, serif;
-    font-weight: 300;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(3.5rem,10vw,7rem) 0 0}
+  .kicker{margin:0 0 clamp(1.75rem,4vw,2.75rem)}
+  .kicker span{display:block}
+  .kicker .beat-1{
+    font-size:clamp(1.25rem,1.05rem + 0.9vw,1.65rem);
+    line-height:1.25;font-weight:400;letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .kicker .beat-2{
+    font-size:clamp(0.9375rem,0.9rem + 0.2vw,1.0625rem);
+    line-height:1.4;font-weight:400;
+    color:var(--muted);margin-top:0.35rem;
+  }
+  h1{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:300;
+    font-size:clamp(2.1rem,1.2rem + 4.2vw,3.9rem);
+    line-height:1.07;
+    letter-spacing:-0.02em;
+    margin:0;
+    max-width:17ch;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+
+  /* ---------- what's happening / what's underneath ---------- */
+  .ledger{
+    margin:clamp(3rem,7vw,5rem) 0 0;
+    border-top:1px solid var(--ink);
+  }
+  .ledger-head{
+    display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,4vw,3.5rem);
+    padding:0.9rem 0;border-bottom:1px solid var(--rule);
+  }
+  .ledger-head span{
+    font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;
+    color:var(--muted);
+  }
+  .pair{
+    display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,4vw,3.5rem);
+    padding:1.5rem 0;border-bottom:1px solid var(--rule);
+  }
+  .said{margin:0;font-size:1.0625rem;max-width:34ch}
+  .unsaid{
+    margin:0;
+    font-family:"Newsreader",Georgia,serif;
+    font-style:italic;font-weight:300;
+    font-size:1.1875rem;line-height:1.45;
+    color:var(--accent);
+    max-width:36ch;
   }
 
-  /* The plumb line: true vertical, everything hangs from it. */
-  .spine {
-    position: fixed;
-    top: 0;
-    left: var(--spine);
-    width: 1px;
-    height: 100vh;
-    background: var(--rule);
-    transform-origin: top center;
-    transform: scaleY(0);
-    animation: drop 900ms cubic-bezier(.16,.84,.44,1) 120ms forwards;
-    z-index: 0;
+  /* ---------- premise ---------- */
+  .premise{padding:clamp(3rem,7vw,5rem) 0 0}
+  .premise p{max-width:var(--measure);font-size:clamp(1.0625rem,1rem + 0.3vw,1.1875rem);line-height:1.6}
+  .premise p em{font-style:italic;color:var(--accent);font-weight:500}
+  .premise .turn{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:300;font-style:italic;
+    font-size:clamp(1.25rem,1.05rem + 0.9vw,1.6rem);
+    line-height:1.38;color:var(--accent);
+    max-width:32ch;margin-top:2rem;
   }
 
-  @keyframes drop { to { transform: scaleY(1); } }
+  /* ---------- generic section ---------- */
+  section{padding:clamp(3.5rem,8vw,6rem) 0}
+  .eyebrow{
+    font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;
+    color:var(--muted);margin:0 0 1.75rem;
+  }
+  h2{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:300;font-size:clamp(1.6rem,1.2rem + 1.4vw,2.25rem);
+    line-height:1.2;letter-spacing:-0.015em;margin:0 0 1.4rem;
+    max-width:24ch;
+  }
+  .body{max-width:var(--measure)}
 
-  .page {
-    position: relative;
-    z-index: 1;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3.5rem calc(var(--spine) + 2.5rem) 2.75rem;
-    gap: 4rem;
+  /* ---------- terms ---------- */
+  .terms{border-top:1px solid var(--ink);margin:0}
+  .term{
+    display:grid;
+    grid-template-columns:14rem 1fr;
+    gap:clamp(1rem,4vw,3rem);
+    padding:1.6rem 0;
+    border-bottom:1px solid var(--rule);
+    align-items:start;
+  }
+  .term dt{
+    font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;
+    color:var(--muted);padding-top:0.35rem;
+  }
+  .term dd{margin:0;max-width:38rem}
+  .term dd strong{font-weight:600}
+
+  /* ---------- fit ---------- */
+  .fit{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(1.75rem,5vw,4rem);
+  }
+  .fit h3{
+    font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;
+    color:var(--muted);font-weight:500;margin:0 0 1.1rem;
+    padding-bottom:0.75rem;border-bottom:1px solid var(--rule);
+  }
+  .fit ul{margin:0;padding:0;list-style:none}
+  .fit li{padding:0.55rem 0;line-height:1.5}
+  .fit li + li{border-top:1px solid var(--rule)}
+
+  /* ---------- close ---------- */
+  .close{border-top:1px solid var(--ink);padding-top:clamp(3rem,7vw,5rem)}
+  .credibility{
+    font-family:"Newsreader",Georgia,serif;font-weight:300;font-style:italic;
+    font-size:clamp(1.25rem,1rem + 1vw,1.75rem);line-height:1.35;
+    color:var(--accent);max-width:30ch;margin:0 0 2.5rem;
+  }
+  .cta{
+    display:inline-block;
+    background:var(--accent);color:var(--paper);
+    text-decoration:none;
+    font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;
+    padding:1rem 2rem;
+    transition:background 160ms ease, transform 160ms ease;
+  }
+  .cta:hover{background:var(--ink)}
+  .cta:active{transform:translateY(1px)}
+  .cta-note{
+    margin:1rem 0 0;font-size:0.9375rem;color:var(--muted);max-width:34rem;
   }
 
-  .rise { opacity: 0; transform: translateY(0.6rem); animation: rise 700ms cubic-bezier(.16,.84,.44,1) forwards; }
-  .d1 { animation-delay: 420ms; }
-  .d2 { animation-delay: 540ms; }
-  .d3 { animation-delay: 660ms; }
-  .d4 { animation-delay: 780ms; }
-  .d5 { animation-delay: 900ms; }
+  footer{
+    margin-top:clamp(4rem,9vw,7rem);
+    border-top:1px solid var(--rule);
+    padding:1.5rem 0 3rem;
+    display:flex;flex-wrap:wrap;gap:0.5rem 2rem;
+    font-size:0.8125rem;color:var(--muted);
+  }
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--ink)}
 
-  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  .eyebrow {
-    font-family: "Archivo", system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 0.6875rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0;
+  /* ---------- responsive ---------- */
+  @media (max-width:46rem){
+    .ledger-head{display:none}
+    .pair{grid-template-columns:1fr;gap:0.6rem;padding:1.35rem 0}
+    .said,.unsaid{max-width:none}
+    .unsaid{padding-left:1.25rem;border-left:2px solid var(--accent)}
+    .term{grid-template-columns:1fr;gap:0.4rem}
+    .term dt{padding-top:0}
+    .fit{grid-template-columns:1fr}
   }
 
-  .wordmark {
-    font-family: "Archivo", system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 0.8125rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0;
-  }
-
-  .lede {
-    font-family: "Archivo", system-ui, sans-serif;
-    font-weight: 500;
-    font-size: clamp(2.1rem, 5.4vw, 3.4rem);
-    line-height: 1.08;
-    letter-spacing: -0.022em;
-    margin: 1.75rem 0 0;
-    max-width: 18ch;
-  }
-
-  .lede em {
-    font-family: "Newsreader", Georgia, serif;
-    font-style: italic;
-    font-weight: 300;
-    color: var(--accent);
-    letter-spacing: 0;
-  }
-
-  .body-copy {
-    max-width: var(--measure);
-    margin: 2rem 0 0;
-    color: var(--ink-soft);
-    font-size: 1.125rem;
-    line-height: 1.62;
-  }
-
-  .body-copy + .body-copy { margin-top: 1.1rem; }
-  .body-copy strong { font-weight: 400; color: var(--ink); }
-
-  .cta-row {
-    margin-top: 2.75rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.25rem 2rem;
-  }
-
-  .cta {
-    font-family: "Archivo", system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 1.0625rem;
-    letter-spacing: -0.005em;
-    color: var(--ground);
-    background: var(--accent);
-    text-decoration: none;
-    padding: 0.95rem 1.6rem;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px rgba(27,33,29,.10), 0 6px 18px -8px rgba(27,33,29,.35);
-    transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease, gap 200ms ease;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.55rem;
-  }
-
-  .cta:hover, .cta:focus-visible {
-    background: var(--ink);
-    transform: translateY(-1px);
-    box-shadow: 0 1px 2px rgba(27,33,29,.12), 0 10px 24px -8px rgba(27,33,29,.42);
-    gap: 0.85rem;
-  }
-  .cta .arrow { font-family: "Newsreader", serif; transition: transform 200ms ease; }
-  .cta:hover .arrow { transform: translateX(0.15rem); }
-
-  .credential {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    font-style: italic;
-  }
-
-  footer {
-    border-top: 1px solid var(--rule);
-    padding-top: 1.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.75rem 2rem;
-    font-family: "Archivo", system-ui, sans-serif;
-    font-size: 0.8125rem;
-    letter-spacing: 0.01em;
-    color: var(--ink-soft);
-  }
-
-  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
-  footer a:hover, footer a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
-
-  footer .note { color: var(--ink-soft); opacity: 0.8; }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 1px; }
-
-  @media (max-width: 44rem) {
-    :root { --spine: 1.5rem; }
-    .page { padding: 2.5rem 1.75rem 2rem calc(var(--spine) + 1.5rem); gap: 3rem; }
-    .lede { max-width: 14ch; }
-    .body-copy { font-size: 1.0625rem; }
-    .cta { font-size: 1rem; padding: 0.85rem 1.4rem; }
-    footer { flex-direction: column; gap: 0.4rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .spine { animation: none; transform: scaleY(1); }
-    .rise { animation: none; opacity: 1; transform: none; }
-    .cta, .cta .arrow { transition: none; }
-    .cta:hover { transform: none; }
+  /* ---------- load ---------- */
+  .rise{opacity:0;transform:translateY(10px);animation:rise 700ms cubic-bezier(.2,.7,.3,1) forwards}
+  .d1{animation-delay:80ms}.d2{animation-delay:200ms}.d3{animation-delay:340ms}.d4{animation-delay:460ms}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .rise{animation:none;opacity:1;transform:none}
+    *{transition:none!important}
   }
 </style>
 </head>
 <body>
 
-<div class="spine" aria-hidden="true"></div>
+<div class="wrap">
 
-<div class="page">
-
-  <header class="rise d1">
-    <p class="wordmark">Work Correctly</p>
+  <header class="masthead rise">
+    <div>
+      <div class="wordmark">Work Correctly</div>
+      <div class="descriptor">Consulting for leadership teams &amp; partnerships · Austin, Texas</div>
+    </div>
+    <a class="nav-cta" href="https://calendar.app.google/7TJjvZWe1nY2LoHL8">Let's talk</a>
   </header>
 
-  <main>
-    <p class="eyebrow rise d2">Consulting for leadership teams &amp; partnerships</p>
-
-    <h1 class="lede rise d2">Most team friction isn't personal. It's <em>structural.</em></h1>
-
-    <p class="body-copy rise d3">
-      I work with leadership teams and partnerships at small and mid-sized
-      businesses — surfacing what isn't being said, and giving people a clear
-      way to see how each of them is built to work.
+  <div class="hero">
+    <p class="kicker rise d1">
+      <span class="beat-1">You've all talked about the problem.</span>
+      <span class="beat-2">It's still happening.</span>
     </p>
+    <h1 class="rise d2">The thing nobody's saying isn't being withheld. <em>It isn't known yet.</em></h1>
 
-    <p class="body-copy rise d3">
-      <strong>Conflict stops being about character and starts being about design.</strong>
-      Uncovering the root of the problem is the game changer.
-    </p>
-
-    <div class="cta-row rise d4">
-      <a class="cta" href="https://calendar.app.google/7TJjvZWe1nY2LoHL8">Book a conversation <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      <span class="credential">Ten years facilitating group conversations and understanding how people work.</span>
+    <div class="ledger rise d3">
+      <div class="ledger-head">
+        <span>What's happening</span>
+        <span>What's underneath it</span>
+      </div>
+      <div class="pair">
+        <p class="said">One person decides and tells everyone after. You've learned to work around it.</p>
+        <p class="unsaid">He's built to move first. He was never built to move silently.</p>
+      </div>
+      <div class="pair">
+        <p class="said">Someone commits in the meeting and walks it back two days later.</p>
+        <p class="unsaid">Her clarity arrives over days, not in the room. Every yes on the spot is a guess.</p>
+      </div>
+      <div class="pair">
+        <p class="said">One of you is quietly running out. Same hours as everyone else, a fraction of the recovery.</p>
+        <p class="unsaid">Two of you rebuild overnight. One of you doesn't, and has been matching your pace on credit.</p>
+      </div>
+      <div class="pair">
+        <p class="said">The hire everyone was excited about is the one everyone's frustrated with. Nothing specific went wrong.</p>
+        <p class="unsaid">Nobody ever saw him clearly, only what they projected. He isn't underperforming. He's finally visible.</p>
+      </div>
+      <div class="pair">
+        <p class="said">You went from two people to four, and something that used to work stopped working.</p>
+        <p class="unsaid">Two and four aren't the same structure at different sizes. They run on different rules.</p>
+      </div>
     </div>
-  </main>
 
-  <footer class="rise d5">
-    <span><a href="mailto:shawn@workcorrectly.com">shawn@workcorrectly.com</a></span>
-    <span>Austin, Texas</span>
-    <span class="note">Full site in progress.</span>
+    <div class="premise rise d4">
+      <p>Most team friction isn't personal. It's <em>structural.</em> Each of these people is doing what they're built to do, in an arrangement that turns it into a liability.</p>
+      <p>I work from a detailed map of how each person on your team is constructed — how they decide, where their energy actually comes from, what they're built for and what they're only imitating.</p>
+      <p class="turn">Once the mechanics are visible, the friction stops being personal. You stop waiting for someone to become a different person, and you start leaning on what they're genuinely good at — which is usually something they don't know about themselves.</p>
+    </div>
+  </div>
+
+  <section>
+    <p class="eyebrow">What this is</p>
+    <h2>A clear way to see how each of you is built to work.</h2>
+    <div class="body">
+      <p>I work with leadership teams and partnerships at small and mid-sized businesses, surfacing what isn't being said. Conflict stops being about character and starts being about design.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The engagement</p>
+    <h2>A conversation first, then three sessions over six weeks.</h2>
+    <div class="body">
+      <p>We start with 45 minutes, just you. Nothing to prepare; mostly me asking questions about what's actually going on. If it's a fit, we schedule the sessions with everyone in the room. If it isn't, you'll still leave that call with a clearer read on the situation, and that's the end of it.</p>
+      <p>Right now I'm taking on a small number of these engagements at no cost. In exchange, I ask for permission to document what happens and write it up. That's the whole trade, and it's the reason there's no invoice.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">What I'm asking for, exactly</p>
+    <h2>The part worth reading twice.</h2>
+    <dl class="terms">
+      <div class="term">
+        <dt>What it's based on</dt>
+        <dd>A specific system for mapping how a person is built. It's detailed, it's particular, and it isn't what you'd expect. I'll walk you through it on the call, before you commit to anything.</dd>
+      </div>
+      <div class="term">
+        <dt>What gets recorded</dt>
+        <dd>Two short interviews with each person — about 30 minutes before we start, and 30 minutes after we finish. The sessions themselves are not recorded. Nobody works honestly on a camera, and honest is the whole point.</dd>
+      </div>
+      <div class="term">
+        <dt>Who sees the recordings</dt>
+        <dd>Only me. They're working material, not content. Nothing from them is published in any form without your written approval.</dd>
+      </div>
+      <div class="term">
+        <dt>What gets published</dt>
+        <dd>A written account of the engagement. <strong>You read it and approve it before it goes anywhere.</strong> Your name, your company, and identifying details are changed unless you tell me otherwise.</dd>
+      </div>
+      <div class="term">
+        <dt>What you can stop</dt>
+        <dd>All of it, at any point, including after you've already said yes. Withdraw approval and nothing gets published; ask and the recordings are deleted. You don't need a reason.</dd>
+      </div>
+      <div class="term">
+        <dt>What it costs</dt>
+        <dd>Nothing, and there's nothing waiting at the end of it. No proposal, no upsell, no follow-on engagement in the wings.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <p class="eyebrow">Fit</p>
+    <div class="fit">
+      <div>
+        <h3>This works when</h3>
+        <ul>
+          <li>A team of two to five people who work closely</li>
+          <li>The friction is recurring, not a one-off blowup</li>
+          <li>Everyone involved can be in the room</li>
+          <li>You can entertain that the differences between you are structural, not moral</li>
+        </ul>
+      </div>
+      <div>
+        <h3>This doesn't</h3>
+        <ul>
+          <li>One person wanting coaching for themselves alone</li>
+          <li>A team hoping I'll rule on who's right</li>
+          <li>A decision that's already been made privately</li>
+          <li>Anything that needs a lawyer or an HR investigation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <p class="credibility">Ten years facilitating group conversations and understanding how people work.</p>
+    <a class="cta" href="https://calendar.app.google/7TJjvZWe1nY2LoHL8">Book a conversation</a>
+    <p class="cta-note">45 minutes, nothing to prepare. If you'd rather ask something first, email me — I answer these myself.</p>
+  </section>
+
+  <footer>
+    <span>Work Correctly</span>
+    <a href="mailto:shawn@workcorrectly.com">shawn@workcorrectly.com</a>
+    <span>Austin, TX</span>
   </footer>
 
 </div>
-
 </body>
 </html>
